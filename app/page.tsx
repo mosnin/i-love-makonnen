@@ -3,138 +3,162 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import RetroButton from '@/components/RetroButton'
-import ArcadeFrame from '@/components/ArcadeFrame'
+import CyberButton from '@/components/CyberButton'
 
 export default function Home() {
   const menuItems = [
-    { label: 'Start Game', path: '/about', description: 'Learn About the Artist' },
-    { label: 'Album Select', path: '/albums', description: 'Browse Discography' },
-    { label: 'New Drops', path: '/new-releases', description: 'Latest Releases' },
+    { label: 'About', path: '/about', icon: '01' },
+    { label: 'Albums', path: '/albums', icon: '02' },
+    { label: 'New Releases', path: '/new-releases', icon: '03' },
   ]
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-12">
-      <div className="container-retro max-w-4xl">
+    <div className="min-h-screen flex items-center justify-center px-4 pt-20 pb-12 relative overflow-hidden">
+      {/* Animated background elements */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyber-pink/5 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+
+      <div className="container-cyber max-w-6xl relative z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
-          <ArcadeFrame title="MAKONNEN ARCADE" className="mb-8">
-            {/* Hero Section */}
-            <div className="text-center py-12 px-4">
-              {/* Animated Title */}
-              <motion.div
-                className="mb-8"
-                initial={{ y: -50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-              >
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold neon-text mb-4 leading-tight">
-                  iLoveMakonnen
-                </h1>
-                <div className="flex items-center justify-center space-x-4 text-retro-pink-light">
-                  <span className="hidden sm:block">━━━━━━</span>
-                  <span className="text-xl sm:text-2xl uppercase tracking-widest">Official Arcade</span>
-                  <span className="hidden sm:block">━━━━━━</span>
-                </div>
-              </motion.div>
-
-              {/* Pixel Art Decoration */}
-              <motion.div
-                className="text-6xl sm:text-8xl mb-12"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 5, -5, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              >
-                🎮🎵
-              </motion.div>
-
-              {/* Main Menu */}
-              <div className="space-y-4 max-w-md mx-auto">
-                {menuItems.map((item, index) => (
-                  <motion.div
-                    key={item.path}
-                    initial={{ x: -100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
-                  >
-                    <Link href={item.path}>
-                      <div className="game-menu-item text-left group">
-                        <div className="flex items-center justify-between">
-                          <span className="text-lg sm:text-xl font-bold">{item.label}</span>
-                          <span className="text-xs sm:text-sm text-gray-400 group-hover:text-retro-pink-light transition-colors">
-                            {item.description}
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Social Links Preview */}
-              <motion.div
-                className="mt-12 pt-8 border-t-2 border-retro-pink/30"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1.3, duration: 0.6 }}
-              >
-                <p className="text-sm sm:text-base text-gray-400 mb-4 uppercase tracking-wider">
-                  Connect & Stream
+          {/* Main Hero Section */}
+          <div className="text-center mb-20">
+            {/* Artist Name - Large and Bold */}
+            <motion.div
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="mb-6"
+            >
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold text-white mb-4 leading-none tracking-tight">
+                iLoveMakonnen
+              </h1>
+              <div className="flex items-center justify-center gap-6 mt-6">
+                <div className="h-px w-20 bg-gradient-to-r from-transparent to-cyber-pink" />
+                <p className="text-sm sm:text-base font-mono text-gray-500 uppercase tracking-[0.3em]">
+                  Artist • Producer • Visionary
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  <RetroButton
-                    href="https://music.apple.com"
-                    variant="outline"
-                    className="text-sm px-4 py-2"
-                  >
-                    Apple Music
-                  </RetroButton>
-                  <RetroButton
-                    href="https://spotify.com"
-                    variant="outline"
-                    className="text-sm px-4 py-2"
-                  >
-                    Spotify
-                  </RetroButton>
-                  <RetroButton
-                    href="https://youtube.com"
-                    variant="outline"
-                    className="text-sm px-4 py-2"
-                  >
-                    YouTube
-                  </RetroButton>
+                <div className="h-px w-20 bg-gradient-to-l from-transparent to-cyber-pink" />
+              </div>
+            </motion.div>
+
+            {/* Geometric Accent */}
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="my-16 flex justify-center"
+            >
+              <motion.div
+                className="relative"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              >
+                <div className="w-24 h-24 border border-cyber-pink/30 flex items-center justify-center"
+                  style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}
+                >
+                  <div className="w-16 h-16 border border-cyber-pink/50 bg-cyber-pink/10"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}
+                  />
                 </div>
               </motion.div>
+            </motion.div>
+          </div>
 
-              {/* Press Start Message */}
-              <motion.div
-                className="mt-8 text-retro-pink-light text-sm sm:text-base"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                ▶ PRESS START TO CONTINUE ◀
-              </motion.div>
-            </div>
-          </ArcadeFrame>
-
-          {/* Credits Footer */}
+          {/* Navigation Grid */}
           <motion.div
-            className="text-center mt-6 text-xs sm:text-sm text-gray-500 uppercase tracking-wider"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-20"
+          >
+            {menuItems.map((item, index) => (
+              <motion.div
+                key={item.path}
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.9 + index * 0.1, duration: 0.6 }}
+              >
+                <Link href={item.path}>
+                  <motion.div
+                    className="group cyber-card cursor-pointer h-full flex flex-col justify-between min-h-[200px]"
+                    whileHover={{ y: -8 }}
+                  >
+                    <div>
+                      <div className="font-mono text-cyber-pink/50 text-xs mb-4">{item.icon}</div>
+                      <h3 className="text-3xl font-display font-bold text-white group-hover:text-cyber-pink transition-colors mb-2">
+                        {item.label}
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-500 group-hover:text-cyber-pink transition-colors mt-4">
+                      <span className="font-mono text-sm">Explore</span>
+                      <span className="transform group-hover:translate-x-2 transition-transform">→</span>
+                    </div>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Streaming Links */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 1.3, duration: 0.8 }}
+            className="text-center"
+          >
+            <div className="accent-line mb-8" />
+            <p className="text-sm font-mono text-gray-600 uppercase tracking-widest mb-6">
+              Stream Now
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <CyberButton
+                href="https://music.apple.com"
+                variant="outline"
+                className="text-sm"
+              >
+                Apple Music
+              </CyberButton>
+              <CyberButton
+                href="https://spotify.com"
+                variant="outline"
+                className="text-sm"
+              >
+                Spotify
+              </CyberButton>
+              <CyberButton
+                href="https://youtube.com"
+                variant="outline"
+                className="text-sm"
+              >
+                YouTube
+              </CyberButton>
+            </div>
+          </motion.div>
+
+          {/* Footer */}
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+            transition={{ delay: 1.6, duration: 0.8 }}
+            className="text-center mt-20"
           >
-            <p>© 2024 iLoveMakonnen | All Rights Reserved</p>
-            <p className="mt-1">Powered by Retro Arcade Tech</p>
+            <p className="text-xs font-mono text-gray-700 uppercase tracking-wider">
+              © 2024 iLoveMakonnen • Cyberpunk Edition
+            </p>
           </motion.div>
         </motion.div>
       </div>

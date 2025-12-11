@@ -9,19 +9,19 @@ interface SocialLinkProps {
   icon?: string
 }
 
-const SocialLink: React.FC<SocialLinkProps> = ({ name, url, icon = '🎮' }) => {
+const SocialLink: React.FC<SocialLinkProps> = ({ name, url, icon = '◆' }) => {
   return (
     <motion.a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="game-menu-item block text-center"
-      whileHover={{ x: 10 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+      className="cyber-menu-item block group"
+      whileHover={{ x: 4 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 20 }}
     >
-      <span className="inline-flex items-center gap-3">
-        <span className="text-2xl">{icon}</span>
-        <span>{name}</span>
+      <span className="inline-flex items-center gap-4">
+        <span className="text-xl text-cyber-pink">{icon}</span>
+        <span className="font-display">{name}</span>
       </span>
     </motion.a>
   )

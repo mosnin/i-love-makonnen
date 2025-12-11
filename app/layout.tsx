@@ -1,17 +1,23 @@
 import type { Metadata } from 'next'
-import { Orbitron } from 'next/font/google'
+import { Space_Grotesk, Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 
-const orbitron = Orbitron({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-retro',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-display',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-body',
 })
 
 export const metadata: Metadata = {
-  title: 'iLoveMakonnen | Official Arcade',
-  description: 'Official website of iLoveMakonnen - Retro Arcade Experience',
+  title: 'iLoveMakonnen | Cyberpunk Edition',
+  description: 'Official website of iLoveMakonnen - Sleek Cyberpunk Experience',
   keywords: ['iLoveMakonnen', 'music', 'artist', 'hip-hop', 'rap'],
 }
 
@@ -22,9 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={orbitron.variable}>
+      <body className={`${spaceGrotesk.variable} ${inter.variable}`}>
         <Navigation />
-        <main className="min-h-screen">
+        <main className="min-h-screen relative">
           {children}
         </main>
       </body>

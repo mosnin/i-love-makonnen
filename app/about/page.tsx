@@ -2,17 +2,16 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import RetroCard from '@/components/RetroCard'
-import ArcadeFrame from '@/components/ArcadeFrame'
-import PixelBorder from '@/components/PixelBorder'
+import CyberCard from '@/components/CyberCard'
+import CyberPanel from '@/components/CyberPanel'
 import SocialLink from '@/components/SocialLink'
 
 export default function About() {
   const stats = [
     { label: 'Years Active', value: '10+' },
-    { label: 'Albums Released', value: '5+' },
+    { label: 'Albums', value: '5+' },
     { label: 'Platinum Singles', value: '2' },
-    { label: 'Global Streams', value: '500M+' },
+    { label: 'Streams', value: '500M+' },
   ]
 
   const achievements = [
@@ -25,57 +24,61 @@ export default function About() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-4">
-      <div className="container-retro max-w-6xl">
+      <div className="container-cyber max-w-6xl">
         {/* Hero Section */}
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-20"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold neon-text mb-4">
-            Player Profile
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-400 uppercase tracking-wider">
-            iLoveMakonnen • Artist • Producer • Icon
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-cyber-pink" />
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-white">
+              About
+            </h1>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-cyber-pink" />
+          </div>
+          <p className="text-center text-gray-500 font-mono text-sm uppercase tracking-widest">
+            Artist Profile
           </p>
         </motion.div>
 
         {/* Stats Grid */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-20"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + index * 0.1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 + index * 0.1 }}
             >
-              <RetroCard className="text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-retro-pink mb-2">
+              <CyberCard className="text-center">
+                <div className="text-4xl sm:text-5xl font-display font-bold text-cyber-pink mb-3">
                   {stat.value}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wider">
+                <div className="text-xs sm:text-sm font-mono text-gray-500 uppercase tracking-wider">
                   {stat.label}
                 </div>
-              </RetroCard>
+              </CyberCard>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Bio Section */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="mb-16"
         >
-          <ArcadeFrame title="Character Bio">
-            <div className="space-y-4 text-gray-300 leading-relaxed">
+          <CyberPanel title="Biography">
+            <div className="space-y-6 text-gray-300 leading-relaxed">
               <p className="text-base sm:text-lg">
                 iLoveMakonnen is an American rapper, singer, and songwriter who rose to prominence
                 with his unique sound that blends hip-hop, R&B, and electronic music. Born and
@@ -95,53 +98,55 @@ export default function About() {
                 artistic vision.
               </p>
             </div>
-          </ArcadeFrame>
+          </CyberPanel>
         </motion.div>
 
         {/* Achievements */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+          className="mb-16"
         >
-          <ArcadeFrame title="Achievements Unlocked">
-            <div className="space-y-3">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.2 + index * 0.1 }}
-                  className="flex items-center space-x-4 p-3 border-l-4 border-retro-pink bg-arcade-gray/50 hover:bg-arcade-gray transition-colors"
-                >
-                  <span className="text-2xl">🏆</span>
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-8">
+            Achievements
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {achievements.map((achievement, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1 + index * 0.1 }}
+                className="cyber-border p-4 bg-cyber-gray-light/30 hover:bg-cyber-gray-light/50 transition-all"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-cyber-pink text-sm mt-1">◆</span>
                   <span className="text-sm sm:text-base text-gray-300">{achievement}</span>
-                </motion.div>
-              ))}
-            </div>
-          </ArcadeFrame>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
         {/* Social Links */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
         >
-          <PixelBorder className="p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center text-retro-pink mb-6 uppercase tracking-wider">
-              Connect & Follow
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <SocialLink name="Apple Music" url="https://music.apple.com" icon="🎵" />
-              <SocialLink name="Spotify" url="https://spotify.com" icon="🎧" />
-              <SocialLink name="YouTube" url="https://youtube.com" icon="📺" />
-              <SocialLink name="Instagram" url="https://instagram.com" icon="📸" />
-              <SocialLink name="TikTok" url="https://tiktok.com" icon="🎬" />
-              <SocialLink name="Twitter / X" url="https://twitter.com" icon="🐦" />
-            </div>
-          </PixelBorder>
+          <div className="accent-line mb-8" />
+          <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-8 text-center">
+            Connect
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
+            <SocialLink name="Apple Music" url="https://music.apple.com" icon="♪" />
+            <SocialLink name="Spotify" url="https://spotify.com" icon="♪" />
+            <SocialLink name="YouTube" url="https://youtube.com" icon="▶" />
+            <SocialLink name="Instagram" url="https://instagram.com" icon="◆" />
+            <SocialLink name="TikTok" url="https://tiktok.com" icon="◆" />
+            <SocialLink name="Twitter / X" url="https://twitter.com" icon="◆" />
+          </div>
         </motion.div>
       </div>
     </div>

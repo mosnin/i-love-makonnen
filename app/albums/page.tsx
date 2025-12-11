@@ -71,50 +71,51 @@ export default function Albums() {
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-4">
-      <div className="container-retro max-w-7xl">
+      <div className="container-cyber max-w-7xl">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="mb-16"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold neon-text mb-4">
-            Album Select
-          </h1>
-          <p className="text-base sm:text-lg text-gray-400 uppercase tracking-wider">
-            Choose Your Soundtrack
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent to-cyber-pink" />
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-white">
+              Albums
+            </h1>
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent to-cyber-pink" />
+          </div>
+          <p className="text-center text-gray-500 font-mono text-sm uppercase tracking-widest">
+            Discography
           </p>
         </motion.div>
 
         {/* Filter Menu */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="mb-16"
         >
-          <div className="arcade-frame max-w-3xl mx-auto">
-            <div className="arcade-frame-inner">
-              <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
-                {filterOptions.map((option) => (
-                  <motion.button
-                    key={option.value}
-                    onClick={() => setFilter(option.value)}
-                    className={`px-4 sm:px-6 py-2 sm:py-3 font-bold uppercase tracking-wider text-sm sm:text-base
-                      border-2 transition-all duration-200 ${
-                      filter === option.value
-                        ? 'bg-retro-pink text-white border-retro-pink shadow-neon-pink'
-                        : 'bg-transparent text-retro-pink border-retro-pink hover:bg-retro-pink/20'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {option.label}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {filterOptions.map((option) => (
+              <motion.button
+                key={option.value}
+                onClick={() => setFilter(option.value)}
+                className={`px-6 py-3 font-display font-semibold uppercase tracking-wider text-sm
+                  transition-all duration-300 border
+                  ${filter === option.value
+                    ? 'bg-cyber-pink/20 text-white border-cyber-pink shadow-neon-pink'
+                    : 'bg-transparent text-gray-400 border-cyber-pink/30 hover:bg-cyber-pink/10 hover:text-white'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))' }}
+              >
+                {option.label}
+              </motion.button>
+            ))}
           </div>
         </motion.div>
 
@@ -122,15 +123,15 @@ export default function Albums() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {filteredAlbums.map((album, index) => (
             <motion.div
               key={album.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
+              transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
             >
               <AlbumCard
                 title={album.title}
@@ -149,55 +150,52 @@ export default function Albums() {
             animate={{ opacity: 1 }}
             className="text-center py-20"
           >
-            <div className="text-6xl mb-4">🎮</div>
-            <p className="text-xl text-gray-400">No albums found in this category</p>
+            <div className="text-6xl mb-4 text-cyber-pink/30">◆</div>
+            <p className="text-xl text-gray-500 font-display">No albums found</p>
           </motion.div>
         )}
 
         {/* Bottom Info */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="mt-16 text-center"
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="mt-20 text-center"
         >
-          <div className="arcade-frame max-w-2xl mx-auto">
-            <div className="arcade-frame-inner p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold text-retro-pink mb-4 uppercase tracking-wider">
-                🎧 Stream Everywhere
-              </h3>
-              <p className="text-sm sm:text-base text-gray-400 mb-4">
-                All albums available on Apple Music, Spotify, YouTube Music, and more.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                <a
-                  href="https://music.apple.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-retro-pink hover:text-retro-pink-light transition-colors underline"
-                >
-                  Apple Music
-                </a>
-                <span className="text-gray-600">•</span>
-                <a
-                  href="https://spotify.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-retro-pink hover:text-retro-pink-light transition-colors underline"
-                >
-                  Spotify
-                </a>
-                <span className="text-gray-600">•</span>
-                <a
-                  href="https://music.youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-retro-pink hover:text-retro-pink-light transition-colors underline"
-                >
-                  YouTube Music
-                </a>
-              </div>
-            </div>
+          <div className="accent-line mb-8" />
+          <h3 className="text-xl sm:text-2xl font-display font-bold text-white mb-4">
+            Available Everywhere
+          </h3>
+          <p className="text-sm text-gray-500 mb-6 font-mono">
+            Stream on all major platforms
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="https://music.apple.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-cyber-pink hover:text-cyber-pink-light transition-colors font-display"
+            >
+              Apple Music
+            </a>
+            <span className="text-gray-700">•</span>
+            <a
+              href="https://spotify.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-cyber-pink hover:text-cyber-pink-light transition-colors font-display"
+            >
+              Spotify
+            </a>
+            <span className="text-gray-700">•</span>
+            <a
+              href="https://music.youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-cyber-pink hover:text-cyber-pink-light transition-colors font-display"
+            >
+              YouTube Music
+            </a>
           </div>
         </motion.div>
       </div>
