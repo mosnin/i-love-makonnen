@@ -83,7 +83,7 @@ export default function About() {
                 musical style.
               </p>
               <p className="text-base sm:text-lg">
-                His breakthrough came with the hit single "Tuesday" featuring Drake, which reached
+                His breakthrough came with the hit single &quot;Tuesday&quot; featuring Drake, which reached
                 the top 20 of the Billboard Hot 100 and earned him a recording contract with OVO
                 Sound and Warner Bros. Records. Known for his melodic approach to rap and his
                 ability to craft infectious hooks, Makonnen has become a influential figure in
