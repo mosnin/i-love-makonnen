@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import retro fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-arcade-black text-white font-retro antialiased;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+    background-size: 100% 4px, 4px 100%;
+  }
+
+  /* CRT Scanline Effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+  }
+
+  /* CRT Glow Effect */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 20, 147, 0.05) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 9998;
+  }
+}
+
+@layer components {
+  /* Pixel Border Component */
+  .pixel-border {
+    @apply relative;
+    border: 4px solid;
+    border-image-source: linear-gradient(45deg, #FF1493, #FF69B4);
+    border-image-slice: 1;
+    box-shadow:
+      0 0 10px rgba(255, 20, 147, 0.5),
+      inset 0 0 10px rgba(255, 20, 147, 0.2);
+  }
+
+  .pixel-border::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    background: linear-gradient(45deg, #FF1493, #FF69B4, #FF1493);
+    border-radius: 4px;
+    opacity: 0.1;
+    z-index: -1;
+  }
+
+  /* Retro Button */
+  .retro-btn {
+    @apply relative px-8 py-4 font-bold text-white bg-gradient-to-r from-retro-pink to-retro-pink-light
+           border-4 border-white uppercase tracking-wider
+           transition-all duration-200 hover:scale-105 active:scale-95
+           shadow-pixel-pink;
+    clip-path: polygon(
+      0% 8px,
+      8px 8px,
+      8px 0%,
+      calc(100% - 8px) 0%,
+      calc(100% - 8px) 8px,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 8px) calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      8px 100%,
+      8px calc(100% - 8px),
+      0% calc(100% - 8px)
+    );
+  }
+
+  .retro-btn:hover {
+    @apply shadow-neon-pink;
+    animation: pulse-glow 1s ease-in-out infinite;
+  }
+
+  /* Retro Card */
+  .retro-card {
+    @apply bg-arcade-gray border-4 border-retro-pink p-6
+           transition-all duration-300 hover:border-neon-pink
+           hover:shadow-neon-pink;
+    clip-path: polygon(
+      0% 12px,
+      12px 12px,
+      12px 0%,
+      calc(100% - 12px) 0%,
+      calc(100% - 12px) 12px,
+      100% 12px,
+      100% calc(100% - 12px),
+      calc(100% - 12px) calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      12px 100%,
+      12px calc(100% - 12px),
+      0% calc(100% - 12px)
+    );
+  }
+
+  /* Neon Text */
+  .neon-text {
+    @apply text-retro-pink;
+    text-shadow:
+      0 0 10px #FF1493,
+      0 0 20px #FF1493,
+      0 0 30px #FF1493,
+      0 0 40px #FF1493;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Pixel Corners */
+  .pixel-corners {
+    position: relative;
+  }
+
+  .pixel-corners::before,
+  .pixel-corners::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 4px solid #FF1493;
+  }
+
+  .pixel-corners::before {
+    top: -4px;
+    left: -4px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .pixel-corners::after {
+    bottom: -4px;
+    right: -4px;
+    border-left: none;
+    border-top: none;
+  }
+
+  /* Container */
+  .container-retro {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Arcade Frame */
+  .arcade-frame {
+    @apply border-4 border-retro-pink bg-arcade-gray p-1;
+    box-shadow:
+      0 0 20px rgba(255, 20, 147, 0.5),
+      inset 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .arcade-frame-inner {
+    @apply border-2 border-retro-pink-light p-4 bg-black;
+  }
+
+  /* Glitch Effect */
+  .glitch {
+    position: relative;
+  }
+
+  .glitch:hover {
+    animation: glitch 0.3s infinite;
+  }
+
+  /* Game Menu Item */
+  .game-menu-item {
+    @apply relative px-6 py-3 text-xl font-bold text-white
+           border-2 border-transparent
+           transition-all duration-200
+           hover:border-retro-pink hover:bg-retro-pink/10
+           hover:shadow-neon-pink cursor-pointer;
+  }
+
+  .game-menu-item::before {
+    content: '▶';
+    @apply absolute left-2 opacity-0 transition-opacity duration-200;
+    color: #FF1493;
+  }
+
+  .game-menu-item:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Responsive helpers */
+  @media (max-width: 640px) {
+    .retro-btn {
+      @apply px-4 py-2 text-sm;
+    }
+
+    .game-menu-item {
+      @apply text-base px-4 py-2;
+    }
+  }
+}
+
+@layer utilities {
+  .text-shadow-neon {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

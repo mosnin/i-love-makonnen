@@ -1,0 +1,10 @@
+{
+  "name": "iLoveMakonnen Official Arcade",
+  "short_name": "Makonnen Arcade",
+  "description": "Official website of iLoveMakonnen - Retro Arcade Experience",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#FF1493",
+  "icons": []
+}
